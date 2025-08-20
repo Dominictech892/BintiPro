@@ -1,15 +1,10 @@
-
 package com.dominic.bintipro.ui.screens.splash
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,19 +25,23 @@ import kotlinx.coroutines.delay
 @Composable
 fun SplashScreen(navController: NavController?, isPreview: Boolean = false) {
 
-    // Navigate after 2.5s (only if not preview)
+    // Navigate after 3s (only if not preview)
     if (!isPreview) {
         LaunchedEffect(Unit) {
-            delay(2500)
+            delay(3000)
             navController?.navigate(ROUT_LOGIN) {
                 popUpTo(0)
             }
         }
     }
 
-    // Gradient background (luxury feel)
+    // Elegant beauty gradient (rose gold inspired)
     val gradient = Brush.verticalGradient(
-        colors = listOf(Color(0xFFFFD700), Color(0xFFFFC0CB), Color.White)
+        colors = listOf(
+            Color(0xFFF8E1E7), // soft pink
+            Color(0xFFFFD6A5), // peach/gold
+            Color.White        // clean base
+        )
     )
 
     Column(
@@ -51,75 +50,74 @@ fun SplashScreen(navController: NavController?, isPreview: Boolean = false) {
             .background(gradient)
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.height(40.dp))
 
-        // Lottie Animation
-        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.ecommerce))
+        // Lottie Animation (beauty/cosmetics)
+        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.ecommerce)) // replace with beauty-themed animation
         val progress by animateLottieCompositionAsState(composition, iterations = LottieConstants.IterateForever)
 
         LottieAnimation(
             composition,
             progress,
-            modifier = Modifier.size(280.dp)
+            modifier = Modifier.size(220.dp)
         )
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                text = "BintiPro",
-                style = MaterialTheme.typography.headlineLarge.copy(
-                    fontWeight = FontWeight.ExtraBold,
-                    color = Color.Black,
-                    fontSize = 40.sp,
-                    letterSpacing = 2.sp
-                )
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Brand name
+        Text(
+            text = "BintiPro",
+            style = MaterialTheme.typography.headlineLarge.copy(
+                fontWeight = FontWeight.ExtraBold,
+                color = Color(0xFF880E4F), // deep rose
+                fontSize = 42.sp,
+                letterSpacing = 1.5.sp
             )
+        )
 
-            Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
-            Card(
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.8f)),
-                elevation = CardDefaults.cardElevation(8.dp)
-            ) {
-                Text(
-                    text = "Shop Smart. Live Better.",
-                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
-                    color = Color(0xFF8B0000),
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        textAlign = TextAlign.Center
-                    )
-                )
-            }
-
-            Spacer(modifier = Modifier.height(12.dp))
-
+        // Tagline Card
+        Card(
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.85f)),
+            elevation = CardDefaults.cardElevation(6.dp)
+        ) {
             Text(
-                text = "Thousands of products at your fingertips.\nGreat deals. Fast delivery.",
-                color = Color.Black.copy(alpha = 0.75f),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Center,
-                    lineHeight = 20.sp
+                text = "Redefining Beauty, Products & Services",
+                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                color = Color(0xFFD81B60),
+                style = MaterialTheme.typography.bodyLarge.copy(
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    textAlign = TextAlign.Center
                 )
             )
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
-        // Bottom progress indicator
-        CircularProgressIndicator(
-            modifier = Modifier
-                .size(42.dp)
-                .align(Alignment.CenterHorizontally),
-            strokeWidth = 4.dp,
-            color = Color(0xFF8B0000)
+        // Sub tagline
+        Text(
+            text = "Discover premium beauty products & book services\ncrafted just for you.",
+            color = Color.Black.copy(alpha = 0.75f),
+            style = MaterialTheme.typography.bodyMedium.copy(
+                fontSize = 15.sp,
+                textAlign = TextAlign.Center,
+                lineHeight = 20.sp
+            ),
+            modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(36.dp))
+
+        // Loading indicator
+        CircularProgressIndicator(
+            modifier = Modifier.size(36.dp),
+            strokeWidth = 3.dp,
+            color = Color(0xFFD81B60)
+        )
     }
 }
 

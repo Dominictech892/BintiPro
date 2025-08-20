@@ -1,4 +1,4 @@
-package com.dominic.bintipro.ui.screens.about
+package com.dominic.bintipro.ui.screens.contact
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,7 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun AboutScreen(navController: NavController) {
+fun ContactScreen(navController: NavController) {
     Scaffold { padding ->
         Column(
             modifier = Modifier
@@ -34,7 +34,7 @@ fun AboutScreen(navController: NavController) {
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = "✨ About BintiPro ✨",
+                text = "📞 Contact Us",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.ExtraBold,
                 color = Color(0xFF6A1B9A),
@@ -44,12 +44,31 @@ fun AboutScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "BintiPro is your premium beauty and wellness platform. " +
-                        "Book luxurious spa treatments, makeup services, hair styling, and more—all from the comfort of your phone. " +
-                        "We aim to provide an unforgettable experience with top professionals and personalized care.",
+                text = "We'd love to hear from you! Reach out to BintiPro via any of the following methods:",
                 fontSize = 16.sp,
                 color = Color.DarkGray,
                 textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = "📧 Email: support@bintipro.com",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.Black
+            )
+            Text(
+                text = "📞 Phone: +254 758 794 526",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.Black
+            )
+            Text(
+                text = "🏢 Address: 123 Wellness Street, Nairobi, Kenya",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.Black
             )
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -66,8 +85,8 @@ fun AboutScreen(navController: NavController) {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun AboutScreenPreview() {
-    AboutScreen(navController = rememberNavController())
+@Preview(showBackground = true)
+fun ContactScreenPreview() {
+    ContactScreen(navController = rememberNavController())
 }
