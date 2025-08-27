@@ -13,6 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.dominic.bintipro.ui.screens.home.BottomNavigationBar   // ✅ import bottom bar
 
 data class Booking(
     val id: Int,
@@ -35,7 +37,8 @@ fun BookingHistoryScreen(navController: NavController) {
     BookingHistoryContent(
         bookings = sampleBookings,
         onCancel = { /* TODO cancel booking */ },
-        onReschedule = { /* TODO reschedule booking */ }
+        onReschedule = { /* TODO reschedule booking */ },
+        navController = navController
     )
 }
 
@@ -43,13 +46,15 @@ fun BookingHistoryScreen(navController: NavController) {
 fun BookingHistoryContent(
     bookings: List<Booking>,
     onCancel: (Int) -> Unit,
-    onReschedule: (Int) -> Unit
+    onReschedule: (Int) -> Unit,
+    navController: NavController
 ) {
     val upcoming = remember(bookings) { bookings.filter { it.isUpcoming } }
     val past = remember(bookings) { bookings.filterNot { it.isUpcoming } }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("My Bookings", fontWeight = FontWeight.Bold) }) }
+        topBar = { TopAppBar(title = { Text("My Bookings", fontWeight = FontWeight.Bold) }) },
+        bottomBar = { BottomNavigationBar(navController) }   // ✅ Added bottom navigation
     ) { padding ->
         Column(
             modifier = Modifier
@@ -112,12 +117,10 @@ private fun BookingCard(
 @Preview(showBackground = true)
 @Composable
 fun BookingHistoryPreview() {
-    MaterialTheme {
-        BookingHistoryContent(
-            bookings = sampleBookings,
-            onCancel = {},
-            onReschedule = {}
-        )
-    }
+    BookingHistoryContent(
+        bookings = sampleBookings,
+        onCancel = {},
+        onReschedule = {},
+        navController = rememberNavController()
+    )
 }
-

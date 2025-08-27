@@ -53,14 +53,11 @@ fun SplashScreen(navController: NavController?, isPreview: Boolean = false) {
         verticalArrangement = Arrangement.Center
     ) {
 
-        // Lottie Animation (beauty/cosmetics)
-        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.ecommerce)) // replace with beauty-themed animation
-        val progress by animateLottieCompositionAsState(composition, iterations = LottieConstants.IterateForever)
-
-        LottieAnimation(
-            composition,
-            progress,
-            modifier = Modifier.size(220.dp)
+        //Lottie Animation
+        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.ecommerce))
+        val progress by animateLottieCompositionAsState(composition)
+        LottieAnimation(composition, progress,
+            modifier = Modifier.size(300.dp)
         )
 
         Spacer(modifier = Modifier.height(24.dp))

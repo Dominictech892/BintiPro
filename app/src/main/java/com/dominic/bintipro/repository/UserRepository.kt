@@ -3,8 +3,7 @@ package com.dominic.bintipro.repository
 import com.dominic.bintipro.data.UserDao
 import com.dominic.bintipro.model.User
 
-
-class UserRepository(private val userDao: UserDao) {
+open class UserRepository(private val userDao: UserDao) {
     suspend fun registerUser(user: User) {
         userDao.registerUser(user)
     }

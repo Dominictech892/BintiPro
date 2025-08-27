@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.dominic.bintipro.model.User
 import com.dominic.bintipro.repository.UserRepository
 import kotlinx.coroutines.launch
-
 class AuthViewModel(private val repository: UserRepository) : ViewModel() {
     var loggedInUser: ((User?) -> Unit)? = null
 

@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.dominic.bintipro.navigation.ROUT_PAYMENT
+import com.dominic.bintipro.ui.screens.home.BottomNavigationBar   // ✅ import bottom nav
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -19,7 +20,8 @@ fun BookingScreen(navController: NavController, total: Int) {
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("Booking Details", fontWeight = FontWeight.Bold) })
-        }
+        },
+        bottomBar = { BottomNavigationBar(navController) }  // ✅ added bottom nav
     ) { padding ->
         Column(
             modifier = Modifier
@@ -53,6 +55,7 @@ fun BookingScreen(navController: NavController, total: Int) {
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun BookingScreenPreview() {
